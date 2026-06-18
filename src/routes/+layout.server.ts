@@ -37,3 +37,5 @@ export async function load() {
     random: randomOrg
   };
 }
+
+export const prerender = true;
