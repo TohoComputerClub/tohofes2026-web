@@ -19,7 +19,7 @@
 //export default config;
 
 import { mdsvex } from 'mdsvex';
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-node';
 
 const config = {
   kit: {
