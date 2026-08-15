@@ -1,7 +1,6 @@
 import type { PageServerLoad } from './$types';
 import type { TimetableEvent } from '$lib/types/timetable';
-import fs from 'fs';
-import path from 'path';
+import { readJsonData } from '$lib/server/data';
 
 const CACHE_TTL = 30_000;
 let cachedEvents: TimetableEvent[] = [];
@@ -14,12 +13,7 @@ export const load: PageServerLoad = async () => {
     }
 
     try {
-        // JSONファイルのパスを構築
-        const jsonPath = path.join(process.cwd(), 'src/lib/server/data/organization.json');
-        
-        // ファイルを同期的に読み込む（または非同期のreadFileを使用）
-        const fileContent = fs.readFileSync(jsonPath, 'utf-8');
-        const events: TimetableEvent[] = JSON.parse(fileContent);
+        const events = readJsonData<TimetableEvent[]>('organization.json');
 
         cachedEvents = Array.isArray(events) ? events : [];
         cachedAt = now;
