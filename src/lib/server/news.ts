@@ -1,11 +1,8 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { readJsonData } from '$lib/server/data';
 
 export async function fetchNews() {
   try {
-    const backupPath = path.join(process.cwd(), 'src/lib/server/data/news.json');
-    const backupData = fs.readFileSync(backupPath, 'utf-8');
-    return JSON.parse(backupData);
+    return readJsonData<any[]>('news.json');
   } catch (error) {
     console.error('お知らせの読み込みに失敗しました。:', error);
     return [];
