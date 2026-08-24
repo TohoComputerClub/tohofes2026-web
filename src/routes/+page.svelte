@@ -2,12 +2,8 @@
 	const { data } = $props();
 	import { onMount } from 'svelte';
 	import { reveal } from '$lib/reveal';
-	/*ローディング*/
 	import { isVisible } from '$lib/stores/loader.js';
 	import Modal from '$lib/components/Modal.svelte';
-	import { Splide, SplideSlide } from '@splidejs/svelte-splide';
-	import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
-	import '@splidejs/svelte-splide/css';
 	import { Pagination } from '@mantine/core';
 	import './tp.css';
 
@@ -15,49 +11,11 @@
 	let showModal = $state(false);
 	let modalType = $state('');
 
-	function openModal(type) {
+	function openModal(type: string) {
 		showModal = true;
 		modalType = type;
 	}
 	/*e:モーダル*/
-	/*s:Auto Scroll*/
-	const optionsLeft = {
-		type: 'loop',
-		drag: 'free',
-		focus: 'center',
-		perPage: 3,
-		gap: '2rem',
-		padding: '5%',
-		pagination: false,
-		autoScroll: {
-			speed: 2 // 右→左
-		},
-		breakpoints: {
-			768: {
-				perPage: 1,
-				gap: '1rem'
-			}
-		}
-	};
-	const optionsRight = {
-		type: 'loop',
-		drag: 'free',
-		focus: 'center',
-		perPage: 3,
-		gap: '2rem',
-		padding: '5%',
-		pagination: false,
-		autoScroll: {
-			speed: -2 // 左→右
-		},
-		breakpoints: {
-			768: {
-				perPage: 1,
-				gap: '1rem'
-			}
-		}
-	};
-	/*e:Auto Scroll*/
 
 	/*s:ローディングアニメーションをもう一度視聴する*/
 	function replayAnimation() {
@@ -65,7 +23,7 @@
 	}
 	/*e:ローディングアニメーションをもう一度視聴する*/
 
-	/*===*/
+	/*s: ローディングアニメーション*/
 	// video要素への参照を保持する変数（型を指定）
 	let videoElement: HTMLVideoElement;
 
@@ -73,15 +31,14 @@
 		if (videoElement) {
 			// 再生処理
 			videoElement.play().catch((error) => {
-				console.error('オートプレイがブロックされました:', error);
 			});
 		}
 	});
 
-	// 終了時のハンドラー（必要に応じて処理を追加）
+	// 終了時のハンドラー
 	const handleEnded = () => {
-		console.log('再生終了：最終フレームで停止中');
 	};
+	/*e: ローディングアニメーション*/
 </script>
 
 <svelte:head>
