@@ -23,13 +23,15 @@
 		return str.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-_]/g, '');
 	}
 
-	const inputdate = new Date(post.date);
+	const inputdate = $derived(new Date(post.date));
 
-	const formattedDate = new Intl.DateTimeFormat('ja-JP', {
-		year: 'numeric',
-		month: '2-digit',
-		day: '2-digit'
-	}).format(inputdate);
+	const formattedDate = $derived(
+		new Intl.DateTimeFormat('ja-JP', {
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit'
+		}).format(new Date(post.date))
+	);
 </script>
 
 <svelte:head>
