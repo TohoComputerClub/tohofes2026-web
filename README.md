@@ -1,7 +1,6 @@
-# 2026年度桐朋祭Webサイト
+# 第75回(2026年度)桐朋祭公式ホームページ
 
-### 2026年度の桐朋祭のWebサイトです。
-[tohofes.jp](https://tohofes.jp)
+[75th.tohofes.jp](https://75th.tohofes.jp)
 
 ## 依存関係のインストール
 `node.js`と`npm`が開発用PCに入っていることを確認してください。
@@ -46,5 +45,3 @@ SERVER_LOCATION="サーバのざっくりとした場所"
 を追加してください。
 
 ---
-
-test
