@@ -730,10 +730,26 @@
 				style="margin-right: 10px; margin-left: 10px;">プライバシーポリシー</a
 			><span class="footer-span">|</span>
 			<a href="/site/contact" class="footer-link" style="margin-left: 10px;">お問い合わせ</a>
-			<p class="footer-text">
-				&copy; 2026 TohoFes. | tohofes.jp All Rights Reserved.
-				本サイトの無断転載は、固くこれを禁じます。
-			</p>
+			<div class="flex mt-2">
+				<p class="footer-text my-auto">
+					&copy; 2026 TohoFes. 75th.tohofes.jp
+				</p>
+				<!--<span class="my-auto mx-2 text-white">|</span>-->
+				<div class="ml-auto">
+					<a
+						href="https://github.com/TohoComputerClub/tohofes2026-web.git" target="_blank"
+						class="bg-gray-300 p-0.5 rounded-sm text-xs tracking-wider transition" 
+					>
+						<i class="fa-brands fa-github"></i><kbd>Sauce</kbd>
+					</a>
+					<a
+						href="https://gitlab.atserver186.jp/t-aoki186/tohofes2026-web.git" target="_blank"
+						class="bg-gray-300 p-0.5 rounded-sm text-xs tracking-wider transition" 
+					>
+						<i class="fa-brands fa-gitlab"></i><kbd>Sauce</kbd>
+					</a>
+				</div>
+			</div>
 		</div>
 		<!--e:フッター最下部-->
 	</div>
