@@ -45,13 +45,6 @@
 	let { data, children } = $props<{ data: { random?: RandomItem[] } }>();
 	let accordionOpen = $state(false);
 
-	/*s:共通変数*/
-	let logo = 'https://pic.atserver186.jp/img/tohofes/tf26-logo-m-v3.webp';
-	let logo_2 = 'https://pic.atserver186.jp/img/tohofes/tf26-logo-s-v2.webp';
-	let logo_alt = '第75回桐朋祭ロゴ';
-	let school_address = '東京都国立市中3-1-10';
-	/*e:共通変数*/
-
 	/*s:ハンバーガーメニュー*/
 	let open = $state(false);
 	let isOtherClosing = $state(false);
@@ -325,7 +318,7 @@
 	<div class="flex items-center justify-between px-2 py-2">
 		<!--s:ロゴ-->
 		<a href="/" class="flex shrink-0 whitespace-nowrap transition">
-			<img src={logo} alt="" class="ml-2 h-13 w-auto rounded-xl" />
+			<img src={data.logo} alt="" class="ml-2 h-13 w-auto rounded-xl" />
 			<!--<p class="m-auto header-text">TOHO FES 2026</p>-->
 		</a>
 		<!--e:ロゴ-->
@@ -552,12 +545,12 @@
 				<div class="footer-flex-content">
 					<div class="footer-logo">
 						<a href="/">
-							<img src={logo_2} alt={logo_alt} class="h-auto w-45 rounded-xl" />
+							<img src={data.logo_2} alt={data.logo_alt} class="h-auto w-45 rounded-xl" />
 						</a>
 					</div>
 					<br />
 					<a href="/access" class="footer-text"
-						><i class="fa-solid fa-location-dot mr-1 text-xs"></i>{school_address}</a
+						><i class="fa-solid fa-location-dot mr-1 text-xs"></i>{data.school_address}</a
 					>
 				</div>
 
@@ -640,10 +633,10 @@
 			<!--s:ロゴ・住所-->
 			<div class="flex flex-col items-center justify-center gap-4">
 				<a href="/">
-					<img src={logo_2} alt={logo_alt} class="mt-4 h-auto w-20 rounded-xl" />
+					<img src={data.logo_2} alt={data.logo_alt} class="mt-4 h-auto w-20 rounded-xl" />
 				</a>
 				<p class="text-white">
-					<i class="fa-solid fa-location-dot mr-1 text-xs"></i>{school_address}
+					<i class="fa-solid fa-location-dot mr-1 text-xs"></i>{data.school_address}
 				</p>
 			</div>
 			<!--s:ロゴ・住所-->
