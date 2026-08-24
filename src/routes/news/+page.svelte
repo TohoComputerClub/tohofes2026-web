@@ -27,11 +27,6 @@
 		<p class="tf26-page-title" style="color: black; margin-bottom: 0;">{pageTitle}</p>
 	</div>
 	<section class="container mx-auto mt-15 mb-25">
-		<div class="mb-4 flex">
-			<a href="https://legacy.atserver186.jp/public/atserver186.jp/news/" target="_blank" class="text-lg"
-				><i class="fa-solid fa-folder text-bace mr-1"></i><span class="underline">過去のお知らせはアーカイブされました。</span></a
-			>
-		</div>
 		{#each posts as post}
 			<ul>
 				<li class="mx-auto mb-4 w-full list-none" style="view-transition-name: newsp-hero;">

@@ -46,12 +46,11 @@
 			<p class="w-fit rounded-2xl border border-gray-500 px-2 py-1 text-xs">
 				<i class="fa-regular fa-circle-user mr-1"></i>{post.author}
 			</p>
-			<a
-				href="/news/category/{post.category}"
+			<p
 				class="w-fit rounded-2xl border border-gray-500 px-2 py-1 text-xs"
 				><i class="fa-solid fa-folder-open mr-1"></i>
-				{post.category}</a
-			>
+				{post.category}
+			</p>
 		</div>
 		<p class=""><i class="fa-regular fa-clock"></i>{formattedDate}{#if post.edited === 1}<span class="ml-2 w-fit rounded-2xl border border-gray-500 px-1 text-xs"><i class="fa-solid fa-clock-rotate-left mr-1"></i>編集済</span>{/if}</p>
 
@@ -86,7 +85,7 @@
 <ol class="main-breadcrumb container mx-auto">
 	<li><a href="/">ホーム</a></li>
 	<li><a href="/news">お知らせ</a></li>
-	<li><a href="/news/category/{post.category}">{post.category}</a></li>
+	<li><p>{post.category}</p></li>
 	<li>{pageTitle}</li>
 </ol>
 
