@@ -59,6 +59,7 @@
 		"@splidejs/splide-extension-auto-scroll": "^0.5.3",
 		"@splidejs/svelte-splide": "^0.2.9",
 		"aos": "^2.3.4",
+		"front-matter": "^4.0.2",
 		"marked": "^17.0.3",
 		"nprogress": "^0.2.0",
 		"postgres": "^3.4.8",
