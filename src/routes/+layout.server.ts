@@ -34,6 +34,7 @@ export async function load() {
     logo: 'https://pic.atserver186.jp/img/tohofes/tf26-logo-m-v2.webp',
     logo_2: 'https://pic.atserver186.jp/img/tohofes/tf26-logo-s.webp',
     logo_alt: '第75回桐朋祭ロゴ',
+    school_address: '東京都国立市中3-1-10',
     random: randomOrg
   };
 }
