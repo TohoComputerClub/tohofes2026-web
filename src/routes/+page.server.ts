@@ -1,10 +1,10 @@
-import { fetchNews } from "$lib/server/news";
+import { getAllPosts } from '$lib/news';
 
 export async function load() {
-  const news = await fetchNews();
+    const news = await getAllPosts();
 
-  // 最新5件だけ
-  const latest = news.slice(0, 5);
+    // 新着5件のみ取得
+    const latestNews = news.slice(0, 5);
 
-  return { latest };
+    return { latestNews};
 }
