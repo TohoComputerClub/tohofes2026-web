@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.site_title}</title>
+	<title>{pageTitle} | {data.site_title}</title>
 	<meta property="og:title" content="{pageTitle} | {data.site_title}" />
 </svelte:head>
 
