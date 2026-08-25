@@ -17,122 +17,19 @@
 		<p class="tf26-page-title" style="color: black; margin-bottom: 0;">{pageTitle}</p>
 	</div>
 	<section class="container mx-auto mt-15 mb-25">
-		<div class="mt-4">
-			<div class="rounded-2xl bg-gray-50 p-4">
-				<h2 class="text-lg font-semibold">SvelteKit</h2>
-				<p class="mt-1 text-sm">
-					提供元:Svelte contributors<br />
-					ライセンス:MIT License<br />
-					公式サイト:<a href="https://kit.svelte.dev" class="underline" target="_blank"
-						>kit.svelte.dev</a
-					>
-					<br />
-					利用内容:Webアプリケーションフレームワークとして使用<br />
-				</p>
-			</div>
-			<div class="mt-2 rounded-2xl bg-gray-50 p-4">
-				<h2 class="mt-2 text-lg font-semibold">Tailwind CSS</h2>
-				<p class="mt-1 text-sm">
-					提供元:Tailwind Labs, Inc.<br />
-					ライセンス:MIT License<br />
-					公式サイト:<a href="https://tailwindcss.com/" class="underline" target="_blank"
-						>tailwindcss.com</a
-					><br />
-					利用内容:ユーティリティファーストなスタイル適用に使用
-				</p>
-			</div>
-			<div class="mt-2 rounded-2xl bg-gray-50 p-4">
-				<h2 class="mt-2 text-lg font-semibold">NProgress</h2>
-				<p class="mt-1 text-sm">
-					提供元: Rico Sta. Cruz<br />
-					ライセンス: MIT License<br />
-					公式サイト:<a href="https://ricostacruz.com/nprogress/" class="underline" target="_blank"
-						>ricostacruz.com/nprogress/</a
-					><br />
-					利用内容: ページ遷移時のプログレスバー表示
-				</p>
-			</div>
-			<div class="mt-2 rounded-2xl bg-gray-50 p-4">
-				<h2 class="mt-2 text-lg font-semibold">Font Awesome Free</h2>
-				<p class="mt-1 text-sm">
-					提供元:Fonticons, Inc.<br />
-					ライセンス:SIL Open Font License 1.1<br />
-					公式サイト:<a href="https://fontawesome.com" class="underline" target="_blank"
-						>fontawesome.com</a
-					><br />
-					利用内容:アイコン表示に使用
-				</p>
-			</div>
-			<div class="mt-2 rounded-2xl bg-gray-50 p-4">
-				<h2 class="mt-2 text-lg font-semibold">CSS Stock</h2>
-				<p class="mt-1 text-sm">
-					提供元:CSS Stock<br />
-					ライセンス:独自ライセンス（商用利用可）<br />
-					公式サイト:<a href="https://pote-chil.com" class="underline" target="_blank"
-						>://pote-chil.com</a
-					><br />
-					利用内容:ボタンやカードのCSSコンポーネントに使用
-				</p>
-			</div>
-			<div class="mt-2 rounded-2xl bg-gray-50 p-4">
-				<h2 class="mt-2 text-lg font-semibold">ICOON MONO</h2>
-				<p class="mt-1 text-sm">
-					提供元:TopeconHeroes<br />
-					ライセンス:独自ライセンス（商用利用可）<br />
-					公式サイト:<a href="https://icooon-mono.com" class="underline" target="_blank"
-						>icooon-mono.com</a
-					><br />
-					利用内容:サイト内のアイコンの一部に使用
-				</p>
-			</div>
-			<div class="mt-2 rounded-2xl bg-gray-50 p-4">
-				<h2 class="mt-2 text-lg font-semibold">iconmonstr</h2>
-				<p class="mt-1 text-sm">
-					提供元:iconmonstr<br />
-					ライセンス:独自ライセンス（商用利用可）<br />
-					公式サイト:<a href="https://iconmonstr.com/" class="underline" target="_blank"
-						>iconmonstr.com</a
-					><br />
-					利用内容:サイト内のアイコンの一部に使用
-				</p>
-			</div>
-			<div class="mt-2 rounded-2xl bg-gray-50 p-4">
-				<h2 class="mt-2 text-lg font-semibold">シルエットイラスト</h2>
-				<p class="mt-1 text-sm">
-					提供元:TopeconHeroes<br />
-					ライセンス:独自ライセンス（商用利用可）<br />
-					公式サイト:<a href="https://www.silhouette-illust.com" class="underline" target="_blank"
-						>silhouette-illust.com</a
-					><br />
-					利用内容:サイト内のイラストの一部に使用
-				</p>
-			</div>
-			<div class="mt-2 rounded-2xl bg-gray-50 p-4">
-				<h2 class="mt-2 text-lg font-semibold">AOS (Animate On Scroll)</h2>
-				<p class="mt-1 text-sm">
-					提供元:Michał Sajnóg<br />
-					ライセンス:MIT License<br />
-					公式サイト:<a href="https://michalsnik.github.io/aos/" class="underline" target="_blank"
-						>michalsnik.github.io/aos/</a
-					>
-					<br />
-					利用内容:スクロールに応じた要素のアニメーション実装に使用<br />
-				</p>
-			</div>
-			<div class="mt-2 rounded-2xl bg-gray-50 p-4">
-				<h2 class="mt-2 text-lg font-semibold">Splide Auto Scroll Extension</h2>
-				<p class="mt-1 text-sm">
-					提供元:Naotoshi Fujita<br />
-					ライセンス:MIT License<br />
-					公式サイト:<a
-						href="https://splidejs.com/extensions/auto-scroll/"
-						class="underline"
-						target="_blank">splidejs.com/extensions/auto-scroll/</a
-					>
-					<br />
-					利用内容:スライダーの自動スクロール機能の拡張に使用<br />
-				</p>
-			</div>
+		<div class="mb-4 rounded-2xl bg-gray-50 p-4">
+			<p class="text-lg mb-4">使用しているオープンソースソフトウェアの一覧は、以下のリンクからご覧いただけます。</p>
+			<a href="https://github.com/t-aoki186/tohofes2026-web/blob/main/oss.md" target="_blank" class="hover:underline">
+				<i class="fa-solid fa-up-right-from-square mr-1 text-sm"></i>https://github.com/t-aoki186/tohofes2026-web/blob/main/oss.md
+			</a>
+			<p class="text-lg my-4">また、こちらのホームページのソースコードも、<a href="https://github.com/TohoComputerClub/" class="hover:underline">GitHub</a>と<a href="https://gitlab.atserver186.jp/t-aoki186/" class="hover:underline">GitLab</a>上でMITライセンスのもと公開されております。</p>
+			<a href="/site/saucecode" class="hover:underline">
+				<i class="fa-solid fa-folder mr-1 text-sm"></i>ソースコード
+			</a>
+			<span>|</span>
+			<a href="https://opensource.org/license/mits" class="hover:underline" target="_blank">
+				<i class="fa-solid fa-up-right-from-square mr-1 text-sm"></i>MIT LICENSE
+			</a>
 		</div>
 	</section>
 </main>
