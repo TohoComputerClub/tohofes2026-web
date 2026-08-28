@@ -28,6 +28,9 @@
 	import { page } from '$app/stores';
 	import { onNavigate } from '$app/navigation';
 
+	//GA
+	import { browser } from '$app/environment';
+
 	/*s:NProgressの設定*/
 	beforeNavigate(() => {
 		NProgress.start();
@@ -38,6 +41,12 @@
 		// ページ遷移時にメニューを閉じる
 		open = false;
 		otherOpen = false;
+		//GA
+		if (browser && window.gtag) {
+      	window.gtag('config', GA_MEASUREMENT_ID, {
+        	page_path: window.location.pathname,
+     	});
+    }
 	});
 	/*e:NProgressの設定*/
 
@@ -180,6 +189,9 @@
 			});
 		});
 	});
+
+	//GA
+	const GA_MEASUREMENT_ID = 'G-LE8CXZXGWS';
 </script>
 
 <svelte:head>
@@ -202,6 +214,15 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@tohofes_2026" />
 	<!--e:SEO-->
+	<!--s: GA-->
+	<script async src="https://www.googletagmanager.com/gtag/js?id={GA_MEASUREMENT_ID}"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){ dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', '{GA_MEASUREMENT_ID}');
+	</script>
+	<!--e: GA-->
 </svelte:head>
 
 <Modal bind:showModal>
