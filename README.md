@@ -43,4 +43,4 @@ nano /etc/environment
 一番下の行に以下を追加してください。
 ```
 SERVER_LOCATION="サーバまたは拠点名"
-```。
+```
