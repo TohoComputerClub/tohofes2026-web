@@ -1,4 +1,4 @@
-import { fetchOrganizations } from '$lib/server/organizations';
+import { fetchOrganizations } from '#lib/server/organizations.js';
 
 function normalizeCategory(category?: string) {
 	if (!category || typeof category !== 'string') return '';

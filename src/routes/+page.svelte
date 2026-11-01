@@ -1,10 +1,9 @@
 <script lang="ts">
 	const { data } = $props();
 	import { onMount } from 'svelte';
-	import { reveal } from '$lib/reveal';
-	import { isVisible } from '$lib/stores/loader.js';
-	import Modal from '$lib/components/Modal.svelte';
-	import { Pagination } from '@mantine/core';
+	import { reveal } from '#lib/reveal.js';
+	import { isVisible } from '#lib/stores/loader.js';
+	import Modal from '#lib/components/Modal.svelte';
 	import './tp.css';
 
 	/*s:モーダル*/

@@ -1,5 +1,5 @@
 import fm from 'front-matter';
-import type { Post, FrontMatter } from '$lib/types';
+import type { Post, FrontMatter } from '#lib/types.js';
 
 let getAllPostsCache: Post[] | null = null;
 
@@ -15,7 +15,8 @@ export async function getAllPosts(): Promise<Post[]> {
   
   const postsModules = import.meta.glob('/static/news/*.md', { 
     eager: true, 
-    as: 'raw' 
+    query: '?raw',
+    import: 'default'
   });
   
   const posts = Object.entries(postsModules)

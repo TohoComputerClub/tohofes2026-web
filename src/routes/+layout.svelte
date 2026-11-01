@@ -2,14 +2,14 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	/*ローディング*/
-	import { isVisible, hasInitialized } from '$lib/stores/loader';
-	import Loading from '$lib/components/Loading.svelte';
+	import { isVisible, hasInitialized } from '#lib/stores/loader.js';
+	import Loading from '#lib/components/Loading.svelte';
 	/*独自スタイル*/
 	import './layout.css';
 	import './icon.css';
 	import './components.css';
 	/*favicon*/
-	import favicon from '$lib/assets/favicon.ico';
+	import favicon from '#lib/assets/favicon.ico';
 	import { get } from 'svelte/store';
 	/*NProgress*/
 	import NProgress from 'nprogress';
@@ -19,24 +19,27 @@
 	import AOS from 'aos';
 	import 'aos/dist/aos.css';
 	/*Sveltekit-View-Transition(ページ遷移時のアニメーション)*/
-	import { setupViewTransition } from 'sveltekit-view-transition';
 	/*モーダル*/
-	import Modal from '$lib/components/Modal.svelte';
+	import Modal from '#lib/components/Modal.svelte';
 	/*URL生成*/
-	import { getUrl } from '$lib/utils/getUrl';
+	import { getUrl } from '#lib/utils/getUrl.js';
 	/*SEO*/
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { onNavigate } from '$app/navigation';
 
 	//GA
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 
 	/*s:NProgressの設定*/
-	beforeNavigate(() => {
+	beforeNavigate(({ shallow, type }) => {
+		if (shallow && type === 'goto') return;
+
 		NProgress.start();
 	});
 
-	afterNavigate(() => {
+	afterNavigate(({ shallow, type }) => {
+		if (shallow && type === 'goto') return;
+
 		NProgress.done();
 		// ページ遷移時にメニューを閉じる
 		open = false;
@@ -50,8 +53,7 @@
 	});
 	/*e:NProgressの設定*/
 
-	type RandomItem = { title: string; type: string; id: string; category?: string };
-	let { data, children } = $props<{ data: { random?: RandomItem[] } }>();
+	let { data, children }: import('./$types').LayoutProps = $props();
 	let accordionOpen = $state(false);
 
 	/*s:ハンバーガーメニュー*/
@@ -117,7 +119,6 @@
 	/*e:AOSの初期化*/
 
 	/*s:View Transition*/
-	setupViewTransition();
 	/*e:View Transition*/
 
 	/*s:ローディングアニメーション*/
@@ -179,6 +180,8 @@
 	/*e:target="_blank"モーダル*/
 
 	onNavigate((navigation) => {
+		if (navigation.shallow && navigation.type === 'goto') return;
+
 		// ブラウザが View Transitions API に対応していない場合は何もしない
 		if (!document.startViewTransition) return;
 
@@ -209,8 +212,8 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="https://tohofes.jp/ogp.png" />
 	<meta property="og:title" content="第75回桐朋祭(桐朋祭2026)" />
-	<link rel="canonical" href={$page.url.href} />
-	<meta property="og:url" content={$page.url.href} />
+	<link rel="canonical" href={page.url.href} />
+	<meta property="og:url" content={page.url.href} />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@tohofes_2026" />
 	<!--e:SEO-->
@@ -249,13 +252,12 @@
 				class="absolute right-0 bottom-0 h-4 w-4 border-r-2 border-b-2 border-(--main-text-color)"
 			></span>
 			<!-- コンテンツ -->
-			<div class="flex justify-center gap-4 font-bold text-(--main-text-color)">
-				<div class="tp-search-method">
-					<a href="/organizations" class="dash-link">
-						<i class="fa-solid fa-list"></i>
-						<p>絞り込む</p>
-					</a>
-				</div>
+
+			<div
+				class="flex justify-center gap-4 font-bold text-(--main-text-color)"
+			>
+				<div class="tp-search-method"><a href="/organizations" class="dash-link"><i class="fa-solid fa-list"></i> <p>絞り込む</p></a></div>
+
 				<div class="tp-search-method">
 					<a href="/timetable" class="dash-link">
 						<i class="fa-solid fa-list"></i>
@@ -267,7 +269,7 @@
 	{/if}
 </Modal>
 
-<svelte:window onclick={openExternalLink} />
+<svelte:window onclick={openExternalLink}></svelte:window>
 
 {#if showLinkModal}
 	<div class="modal-backdrop">
@@ -276,10 +278,19 @@
 				外部サイトへ移動しますか？
 			</p>
 			<hr class="main-hr" />
-			<p class="mb-5 text-[0.8rem] leading-[1.8rem] break-all text-gray-600">{targetUrl}</p>
 
-			<label class="group mb-5 flex cursor-pointer items-center">
-				<input class="peer hidden" type="checkbox" bind:checked={skipExternalLinkConfirmation} />
+			<p
+				class="mb-5 text-[0.8rem] leading-[1.8rem] break-all text-gray-600"
+			>{targetUrl}</p>
+
+			<label
+				class="group mb-5 flex cursor-pointer items-center"
+			>
+				<input
+					class="peer hidden"
+					type="checkbox"
+					bind:checked={skipExternalLinkConfirmation}
+				/>
 
 				<span
 					class="relative flex h-8 w-8 items-center justify-center rounded-md border-2 border-gray-400 bg-gray-100 shadow-md transition-all duration-500 peer-checked:border-(--main-text-color) peer-checked:bg-(--main-text-color) peer-hover:scale-105"
@@ -320,7 +331,11 @@
 						<span>リンクをコピー</span>
 					</div>
 				</button>
-				<button onclick={() => (showLinkModal = false)} class="link-main">
+
+				<button
+					onclick={() => showLinkModal = false}
+					class="link-main"
+				>
 					<div class="link-main-underline">
 						<i class="fa-solid fa-arrow-right-long"></i>
 						<span>キャンセル</span>
@@ -356,7 +371,7 @@
 					<button
 						class="col-start-1 row-start-1 flex cursor-pointer flex-col gap-1.5"
 						transition:fade={{ duration: 300 }}
-						onclick={() => (open = !open)}
+						onclick={() => open = !open}
 						title="メニュー"
 					>
 						<div class="flex h-10 w-9 cursor-pointer flex-col items-center justify-center">
@@ -391,34 +406,51 @@
 		<!---->
 		<!--PC用メニュー-->
 		<nav class="hidden md:flex">
-			<ul class="flex items-center gap-5 whitespace-nowrap transition">
-				<li><a href="/" class="header-text ml-3 text-xs tracking-wider transition">ホーム</a></li>
+			<ul
+				class="flex items-center gap-5 whitespace-nowrap transition"
+			>
 				<li>
-					<a href="/about" class="header-text ml-3 text-xs tracking-wider transition">桐朋祭とは</a>
+					<a
+						href="/"
+						class="header-text ml-3 text-xs tracking-wider transition"
+					>ホーム</a>
 				</li>
 				<li>
-					<a href="/visitor" class="header-text ml-3 text-xs tracking-wider transition"
-						>来場者の皆様へ</a
-					>
+					<a
+						href="/about"
+						class="header-text ml-3 text-xs tracking-wider transition"
+					>桐朋祭とは</a>
 				</li>
 				<li>
-					<a href="/organizations" class="header-text ml-3 text-xs tracking-wider transition"
-						>参加団体</a
-					>
+					<a
+						href="/visitor"
+						class="header-text ml-3 text-xs tracking-wider transition"
+					>来場者の皆様へ</a>
 				</li>
 				<li>
-					<a href="/foods" class="header-text ml-3 text-xs tracking-wider transition">飲食情報</a>
+					<a
+						href="/organizations"
+						class="header-text ml-3 text-xs tracking-wider transition"
+					>参加団体</a>
 				</li>
 				<li>
-					<a href="/timetable" class="header-text ml-3 text-xs tracking-wider transition"
-						>企画タイムテーブル</a
-					>
+					<a
+						href="/foods"
+						class="header-text ml-3 text-xs tracking-wider transition"
+					>飲食情報</a>
 				</li>
+				<li>
+					<a
+						href="/timetable"
+						class="header-text ml-3 text-xs tracking-wider transition"
+					>企画タイムテーブル</a>
+				</li>
+
 				<li>
 					<button
 						class="header-text ml-3 cursor-pointer text-xs tracking-wider transition"
-						onclick={() => (otherOpen = !otherOpen)}>その他</button
-					>
+						onclick={() => otherOpen = !otherOpen}
+					>その他</button>
 				</li>
 				<li>
 					<a
@@ -455,7 +487,10 @@
 				<li><a href="foods" class="header-text">飲食情報</a></li>
 				<li><a href="/timetable" class="header-text">企画タイムテーブル</a></li>
 				<li>
-					<button class="header-text" onclick={() => (otherOpen = !otherOpen)}>その他</button>
+					<button
+						class="header-text"
+						onclick={() => otherOpen = !otherOpen}
+					>その他</button>
 				</li>
 			</ul>
 			<hr class="main-hr" />
@@ -480,7 +515,7 @@
 		<nav
 			class="overflow-auto p-6"
 			transition:fade={{ duration: 500 }}
-			onoutrostart={() => (isOtherClosing = true)}
+			onoutrostart={() => isOtherClosing = true}
 			onoutroend={() => {
 				isOtherClosing = false;
 				if (pendingOpen) {
@@ -526,16 +561,30 @@
 					>
 				</li>
 				<li>
-					<a href="https://www.toho.ed.jp/" target="_blank" class="header-text"
-						><i class="fa-solid fa-arrow-up-right-from-square mr-1 text-xs"
-						></i>桐朋中学校・高等学校HP</a
+					<a
+						href="https://www.toho.ed.jp/"
+						target="_blank"
+						class="header-text"
 					>
+						<i
+							class="fa-solid fa-arrow-up-right-from-square mr-1 text-xs"
+						></i>
+
+						桐朋中学校・高等学校HP
+					</a>
 				</li>
 				<li>
-					<a href="https://fes.tcc-archive.club/2026/" target="_blank" class="header-text"
-						><i class="fa-solid fa-arrow-up-right-from-square mr-1 text-xs"
-						></i>コンピューター部桐朋祭用特設HP</a
+					<a
+						href="https://fes.tcc-archive.club/2026/"
+						target="_blank"
+						class="header-text"
 					>
+						<i
+							class="fa-solid fa-arrow-up-right-from-square mr-1 text-xs"
+						></i>
+
+						コンピューター部桐朋祭用特設HP
+					</a>
 				</li>
 				<li>
 					<a href="/site/contact" class="header-text"
@@ -743,8 +792,15 @@
 			<br />
 			<hr class="sub-hr" />
 			<br />
-			<a href="/site/site-policy" class="footer-link" style="margin-right: 10px;">サイトポリシー</a
-			><span class="footer-span">|</span>
+
+			<a
+				href="/site/site-policy"
+				class="footer-link"
+				style="margin-right: 10px;"
+			>サイトポリシー</a>
+
+			<span class="footer-span">|</span>
+
 			<a
 				href="/site/privacy-policy"
 				class="footer-link"
@@ -752,9 +808,7 @@
 			><span class="footer-span">|</span>
 			<a href="/site/contact" class="footer-link" style="margin-left: 10px;">お問い合わせ</a>
 			<div class="flex mt-2">
-				<p class="footer-text my-auto">
-					&copy; 2026 TohoFes. 75th.tohofes.jp
-				</p>
+				<p class="footer-text my-auto">© 2026 TohoFes. 75th.tohofes.jp</p>
 				<!--<span class="my-auto mx-2 text-white">|</span>-->
 				<div class="ml-auto">
 					<a

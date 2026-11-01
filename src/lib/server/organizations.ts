@@ -1,4 +1,4 @@
-import { readJsonData } from '$lib/server/data';
+import { readJsonData } from '#lib/server/data.js';
 
 export async function fetchOrganizations() {
 	try {

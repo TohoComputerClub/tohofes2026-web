@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { reveal } from '$lib/reveal';
+	import { reveal } from '#lib/reveal.js';
 
 	// 型定義
 	type Item = {

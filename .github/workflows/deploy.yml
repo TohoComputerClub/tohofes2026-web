@@ -25,7 +25,7 @@ jobs:
           git reset --hard origin/main
           
           # 3. 依存関係のインストールとビルド
-          npm install
+          npm ci --include=dev
           npm run build
           
           # 4. PM2で再起動（反映）

@@ -1,11 +1,11 @@
-import { getPostBySlug } from '$lib/news';
+import { getPostBySlug } from '#lib/news.js';
 import { error } from '@sveltejs/kit';
-import type { Post } from '$lib/types';
+import type { Post } from '#lib/types.js';
 import { marked } from 'marked';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import fm from 'front-matter';
-import type { FrontMatter } from '$lib/types';
+import type { FrontMatter } from '#lib/types.js';
 
 function generateSlug(text: string): string {
 	return text

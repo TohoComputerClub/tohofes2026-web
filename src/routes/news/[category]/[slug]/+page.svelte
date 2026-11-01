@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Post } from '$lib/types';
+	import type { Post } from '#lib/types.js';
 
 	interface TableOfContents {
 		title: string;

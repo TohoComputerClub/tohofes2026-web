@@ -1,5 +1,5 @@
 /*
-import { fetchNews } from '$lib/server/getjson/news';
+import { fetchNews } from '#lib/server/getjson/news';
 
 export async function load() {
 	const news = await fetchNews();
@@ -7,8 +7,8 @@ export async function load() {
 }
 */
 
-import { getAllPosts } from '$lib/news';
-import type { Post } from '$lib/types';
+import { getAllPosts } from '#lib/news.js';
+import type { Post } from '#lib/types.js';
 
 export async function load() {
   const posts = await getAllPosts();

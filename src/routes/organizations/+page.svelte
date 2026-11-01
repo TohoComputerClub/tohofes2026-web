@@ -2,16 +2,16 @@
 	const { data } = $props();
 
 	import { onMount } from 'svelte';
-	import { reveal } from '$lib/reveal';
-	import { getUrl } from '$lib/utils/getUrl';
+	import { reveal } from '#lib/reveal.js';
+	import { getUrl } from '#lib/utils/getUrl.js';
 	import { page } from '$app/state';
 
-	import Modal from '$lib/components/Modal_Search.svelte';
+	import Modal from '#lib/components/Modal_Search.svelte';
 	let show = $state(false);
 
 	let pageTitle = '参加団体';
 
-	import { getCategoryLabel, getCategoryInfo } from '$lib/utils/orgCategoryMap.js';
+	import { getCategoryLabel, getCategoryInfo } from '#lib/utils/orgCategoryMap.js';
 
 	/*s: 絞り込み検索*/
 	type QueryKey = 'category' | 'place' | 'date';
@@ -46,7 +46,7 @@
 
 	// URLを更新
 	function updateUrl(): void {
-		const searchParams = new URLSearchParams(page.url.searchParams);
+		const searchParams = new URLSearchParams(page.url.searchParams.toString());
 		if (selectedCategories.length > 0) {
 			searchParams.set('category', selectedCategories.join(','));
 		} else {
@@ -364,7 +364,7 @@
 					<div class="flex">
 						<div class="mr-2 flex-col" style="min-width: 0; max-width: 100%;">
 						<div class="sp-search-result-text mb-4 text-xs text-(--main-text-color) flex flex-wrap gap-2">
-							{#each item.category.split(',').map(c => c.trim()).filter(c => c.length > 0) as cat}
+							{#each item.category.split(',').map((c: string) => c.trim()).filter((c: string) => c.length > 0) as cat}
 								<span class="text-xs inline-flex items-center gap-1 px-0.5 py-px mx-1 bg-gray-100 rounded">
 									<i class="fa-solid fa-tag"></i>{getCategoryLabel(cat)}
 								</span>

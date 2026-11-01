@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
-	import { isVisible } from '$lib/stores/loader';
+	import { isVisible } from '#lib/stores/loader.js';
 
 	//videoElementにHTMLVideoElement型を指定
 	let videoElement: HTMLVideoElement;

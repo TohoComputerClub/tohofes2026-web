@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import Timetable from '$lib/components/Timetable.svelte';
+	import Timetable from '#lib/components/Timetable.svelte';
 
 	let { data }: { data: PageData } = $props();
 

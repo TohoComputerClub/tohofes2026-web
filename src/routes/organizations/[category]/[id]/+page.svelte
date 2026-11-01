@@ -13,11 +13,11 @@
 	const primaryCategory = $derived(getPrimaryCategory(item.category));
 
 	import { onMount } from 'svelte';
-	import { reveal } from '$lib/reveal';
-	import { mdToHtml } from '$lib/utils/markdown';
+	import { reveal } from '#lib/reveal.js';
+	import { mdToHtml } from '#lib/utils/markdown.js';
 
 	/*カテゴリ変換マップ*/
-	import { getCategoryLabel, getCategoryInfo } from '$lib/utils/orgCategoryMap.js';
+	import { getCategoryLabel, getCategoryInfo } from '#lib/utils/orgCategoryMap.js';
 
 	/*s: カルーセル*/
 	import Swiper from 'swiper';
@@ -26,7 +26,6 @@
 	import 'swiper/css';
 	import 'swiper/css/navigation';
 	import 'swiper/css/pagination';
-	import { setupViewTransition } from 'sveltekit-view-transition';
 	import { afterNavigate, beforeNavigate } from '$app/navigation';
 
 	let swiperContainer: HTMLDivElement | null = null;
@@ -154,8 +153,8 @@
 				<div class="mb-4">
 					{#each item.category
 						.split(',')
-						.map((c) => c.trim())
-						.filter((c) => c.length > 0) as cat}
+						.map((c: string) => c.trim())
+						.filter((c: string) => c.length > 0) as cat}
 						<a href={`/organizations/?category=${cat}`} class="text-decoration-none">
 							<span
 								class="m-1 inline-flex items-center gap-1 rounded bg-gray-100 text-(--main-text-color) px-0.5 py-px text-xl"

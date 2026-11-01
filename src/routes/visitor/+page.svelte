@@ -2,8 +2,8 @@
 	const { data } = $props();
 
 	import { onMount } from 'svelte';
-	import { reveal } from '$lib/reveal';
-	import Modal from '$lib/components/Modal.svelte';
+	import { reveal } from '#lib/reveal.js';
+	import Modal from '#lib/components/Modal.svelte';
 
 	let pageTitle = '来場者の皆様へ';
 </script>
