@@ -1,4 +1,4 @@
-import { getAllPosts } from '$lib/news';
+import { getAllPosts } from '#lib/news.js';
 
 export async function load() {
     const news = await getAllPosts();

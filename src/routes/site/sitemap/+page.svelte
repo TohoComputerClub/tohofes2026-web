@@ -2,8 +2,8 @@
 	const { data } = $props();
 
 	import { onMount } from 'svelte';
-	import { reveal } from '$lib/reveal';
-	import { getUrl } from '$lib/utils/getUrl';
+	import { reveal } from '#lib/reveal.js';
+	import { getUrl } from '#lib/utils/getUrl.js';
 	import { page } from '$app/state';
 
 	let pageTitle = 'サイトマップ';

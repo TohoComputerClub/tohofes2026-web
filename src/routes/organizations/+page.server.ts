@@ -1,4 +1,4 @@
-import { fetchOrganizations } from '$lib/server/organizations';
+import { fetchOrganizations } from '#lib/server/organizations.js';
 
 //カテゴリをカンマ区切りで分割して配列として返す
 function getCategories(category?: string) {

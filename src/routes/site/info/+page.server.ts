@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private';
+import { SERVER_LOCATION } from '$app/env/private';
 import type { PageServerLoad } from './$types';
 import promises from 'fs';
 import path from 'path';
@@ -16,8 +16,8 @@ export const load: PageServerLoad = async () => {
         
         return {
             //サーバーに設定した名前を表示(/etc/environment)
-            serverLocation: env.SERVER_LOCATION || 'Unknown Server',
-            items: items
+            serverLocation: SERVER_LOCATION || 'Unknown Server',
+            items
         };
     } catch (error) {
         throw new Error(`データの取得に失敗しました: ${error instanceof Error ? error.message : String(error)}`);

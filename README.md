@@ -3,31 +3,41 @@
 [75th.tohofes.jp](https://75th.tohofes.jp)
 
 ## 依存関係のインストール
+
 `Node.js`と`npm`が開発用PCに入っていることを確認してください。
 [Node.jsのインストール](https://nodejs.org/ja/download)
 
 次のコマンドを使って、必要なパッケージを取得します。
+
 ```
-npm i
+npm ci --include=dev
 ```
 
 ## 開発サーバを建てる
+
 通常は`http://localhost:5173`に開発サーバを建てられます。
 `5173`ポートが別開発環境で使用されている場合は`5174`や`5175`ポートで起動します。
+
 ```
 npm run dev
 ```
+
 ウィンドウを開く場合は
+
 ```
 npm run dev -- --open
 ```
 
 ## 本番環境での動かし方
+
 開発用にビルドするには以下を実行
+
 ```
 npm run build
 ```
+
 本番サーバを起動するには
+
 ```
 cd build
 npm start
@@ -36,11 +46,20 @@ npm start
 ---
 
 ## サーバ名を表示用
+
 接続先のサーバーを確認できるようにしたいので本番環境用サーバで以下の設定をしてください。
+
 ```
 nano /etc/environment
 ```
+
 一番下の行に以下を追加してください。
+
 ```
 SERVER_LOCATION="サーバまたは拠点名"
 ```
+
+## 依存関係の更新について
+
+Node.js 22.17 以上が必要です（検証環境: 24.13.0）。開発・ビルドでは `npm ci --include=dev` を実行してください。
+更新内容、互換性の制約、脆弱性対応は [DEPENDENCY_UPDATE.md](./DEPENDENCY_UPDATE.md) を参照してください。

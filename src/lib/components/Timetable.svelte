@@ -1,7 +1,7 @@
 <script lang="ts">
 	/*s: タイムテーブル(基)*/
-	import type { TimetableEvent, ProcessedEvent } from '$lib/types/timetable';
-	import { page } from '$app/stores';
+	import type { TimetableEvent, ProcessedEvent } from '#lib/types/timetable.js';
+	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
 	let { events = [] }: { events?: TimetableEvent[] } = $props();
 
@@ -84,7 +84,7 @@
 			if (!grouped.has(event.dayNumber)) {
 				grouped.set(event.dayNumber, []);
 			}
-			grouped.get(event.dayNumber)!.push(event);
+			(grouped.get(event.dayNumber)!).push(event);
 		});
 		return grouped;
 	}
@@ -96,7 +96,7 @@
 			if (!map.has(key)) {
 				map.set(key, []);
 			}
-			map.get(key)!.push(event);
+			(map.get(key)!).push(event);
 		});
 		return map;
 	}
@@ -116,14 +116,14 @@
 
 	// 時間位置をパーセントで計算（固定レンジに対して）
 	function getTimePosition(minutes: number): number {
-		const position = ((minutes - FIXED_TIME_RANGE.min) / (FIXED_TIME_RANGE.max - FIXED_TIME_RANGE.min)) * 100;
+		const position = (minutes - FIXED_TIME_RANGE.min) / (FIXED_TIME_RANGE.max - FIXED_TIME_RANGE.min) * 100;
 		return Math.min(100, Math.max(0, position));
 	}
 
 	// イベントカードのスタイルを計算（Y軸の位置と高さ）
 	function getEventStyle(event: ProcessedEvent): string {
 		const topPercent = getTimePosition(event.startMinutes);
-		const rawHeightPercent = (event.duration / (FIXED_TIME_RANGE.max - FIXED_TIME_RANGE.min)) * 100;
+		const rawHeightPercent = event.duration / (FIXED_TIME_RANGE.max - FIXED_TIME_RANGE.min) * 100;
 		const heightPercent = Math.max(4, Math.min(100 - topPercent, rawHeightPercent));
 		return `top: ${topPercent}%; height: ${heightPercent}%; min-height: 40px;`;
 	}
@@ -167,14 +167,14 @@
 	let selectedDay = $state(1);
 
 	$effect(() => {
-		const dateParam = Number($page.url.searchParams.get('date'));
-		selectedDay = [1, 2, 3].includes(dateParam) ? dateParam : (availableDays[0] || 1);
+		const dateParam = Number(page.url.searchParams.get('date'));
+		selectedDay = [1, 2, 3].includes(dateParam) ? dateParam : availableDays[0] || 1;
 	});
 
 	function setSelectedDay(day: number) {
-		const searchParams = new URLSearchParams($page.url.searchParams);
+		const searchParams = new URLSearchParams(page.url.searchParams.toString());
 		searchParams.set('date', String(day));
-		goto(`?${searchParams.toString()}`, { replaceState: true, noScroll: true, keepFocus: true });
+		goto(`?${searchParams.toString()}`, { replace: true, reset: false });
 	}
 	//日付選択ボタンの表示用設定
 	const dayButtons: { day: number; label: string }[] = [

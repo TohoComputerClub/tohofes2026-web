@@ -2,7 +2,7 @@
 	const { data } = $props();
 
 	import { onMount } from 'svelte';
-	import { reveal } from '$lib/reveal';
+	import { reveal } from '#lib/reveal.js';
 
 	let pageTitle = 'フォントテスト';
 </script>
